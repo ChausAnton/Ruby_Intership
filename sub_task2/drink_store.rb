@@ -1,14 +1,19 @@
 class ShopInventory
-    @@DrinksNames = []
 
     def initialize(inventory)
         @@inventory = inventory
     end
     
     def item_in_stock
-        @@DrinksNames = @@inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:name]}
-        @@DrinksNames.delete("")
-        @@DrinksNames.sort
+        drinksNamesInStock = @@inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:name]}
+        drinksNamesInStock.delete("")
+        drinksNamesInStock.sort
+    end
+
+    def affordable
+        drinksAffordable = @@inventory.map{|elem| elem[:price] < 50 ? elem : ""}
+        drinksAffordable.delete("")
+        drinksAffordable
     end
 end
 
@@ -21,3 +26,4 @@ inventory = [
 
 obj = ShopInventory.new(inventory)
 puts obj.item_in_stock
+puts obj.affordable
