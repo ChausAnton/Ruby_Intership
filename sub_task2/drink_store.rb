@@ -1,35 +1,35 @@
 class ShopInventory
 
     def initialize(inventory)
-        @@inventory = inventory
+        @inventory = inventory
     end
     
     def item_in_stock
-        drinks_names_in_stock = @@inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:name]}
+        drinks_names_in_stock = @inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:name]}
         drinks_names_in_stock.delete("")
         drinks_names_in_stock.sort
     end
 
     def affordable
-        drinks_affordable = @@inventory.map{|elem| elem[:price] < 50 ? elem : ""}
+        drinks_affordable = @inventory.map{|elem| elem[:price] < 50 ? elem : ""}
         drinks_affordable.delete("")
         drinks_affordable
     end
 
     def out_of_stock
-        drinks_out_of_stock = @@inventory.map{|elem| elem[:quantity_by_size].empty?() ? elem : ""}
+        drinks_out_of_stock = @inventory.map{|elem| elem[:quantity_by_size].empty?() ? elem : ""}
         drinks_out_of_stock.delete("")
         drinks_out_of_stock
     end
 
     def how_much_left(name)
-        drinks_how_much_left = @@inventory.map{|elem| elem[:name] == name ? elem : ""}
+        drinks_how_much_left = @inventory.map{|elem| elem[:name] == name ? elem : ""}
         drinks_how_much_left.delete("")
         drinks_how_much_left[0][:quantity_by_size]
     end
 
-    def total_stock(name)
-        drinks_total_stock = @@inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:quantity_by_size]}
+    def total_stock()
+        drinks_total_stock = @inventory.map{|elem| elem[:quantity_by_size].empty?() ? "" : elem[:quantity_by_size]}
         drinks_total_stock.delete("")
         (drinks_total_stock.map{|elem|
             sum = 0
@@ -58,4 +58,4 @@ puts "#{obj.out_of_stock}\n\n"
 puts "how_much_left:"
 puts "#{obj.how_much_left("Cola")}\n\n"
 puts "total_stock:"
-puts "#{obj.total_stock("Cola")}\n\n"
+puts "#{obj.total_stock()}\n\n"
