@@ -1,4 +1,4 @@
-## Folder sub_task1
+## Folder sub_task3
 # script.rb
-- contains Ruby script
+- contains Ruby script ShopInventory
 - `ruby script.rb`
