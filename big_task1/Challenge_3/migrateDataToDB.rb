@@ -1,67 +1,19 @@
-require_relative 'dropDB'
-require_relative 'createDB'
+require_relative 'db/dropDB'
+require_relative 'db/createDB'
+require_relative 'parsFile/pars'
 require 'csv'
 
-dropDB()
-createDB()
-
-def getOfficesInfo(file)
-    OfficesInfo = {
-        id: [],
-        title: [],
-        address: [],
-        city: [],
-        state: [],
-        phone: [],
-        lob: [],
-        type: []
-    }
-
-
-end
-
-def getZonesInfo(file)
-    ZonesInfo = {
-        id: [],
-        type: [],
-        office_id: []
-    }
-end
-
-def getRoomsInfo(file)
-    RoomsInfo = {
-        id: [],
-        area: [],
-        max_people: [],
-        name: [],
-        zones_id: []
-    }
-end
-
-def getFixturesInfo(file)
-    FixturesInfo = {
-        id: [],
-        name: [],
-        type: [],
-        rooms_id: [],
-    }
-end
-
-def getMarketingMaterialsInfo(file)
-    MarketingMaterialsInfo = {
-        id: [],
-        name: [],
-        type: [],
-        cost: [],
-        fixture_id: []
-    }
-end
-
 def migrateDataToDb()
-    csvFile = CSV.read("./Data_for_task_1.csv")
-
-
-
+    conn = PG.connect(:dbname => 'bigtask', :password => '', :port => 5432, :user => 'chausanton')
+    csvFile = CSV.read("./Data_for_task_1.csv", headers: true)
+    dropDB(conn)
+    createDB(conn)
+    getOfficesInfo(csvFile, conn)
+    getZonesInfo(csvFile, conn)
+    getRoomsInfo(csvFile, conn)
+    getFixturesInfo(csvFile, conn)
+    getMarketingMaterialsInfo(csvFile, conn);
 end
 
 
+migrateDataToDb()
