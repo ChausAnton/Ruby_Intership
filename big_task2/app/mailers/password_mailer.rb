@@ -1,5 +1,5 @@
 class PasswordMailer < ApplicationMailer
-  default from: 'example.liza@gmail.com'
+  default from: 'example.anton@gmail.com'
   def reset
     @token = params[:user].signed_id(purpose: 'reset_password_edit', expires_in: 15.minutes)
     mail(to: params[:user].email)

@@ -10,7 +10,7 @@ The setups steps expect following tools installed on the system.
 ##### 1. Check out the repository
 
 ```bash
-git clone https://github.com/lizbethzepesch/ruby-practice
+git clone https://github.com/ChausAnton/Ruby_Intership/tree/master/big_task2
 ```
 
 ##### 2. Install gems
